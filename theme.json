@@ -1,0 +1,9 @@
+{
+  "name": "Monotone",
+  "creator": "DippyCoder",
+  "creatorUrl": "https://github.com/DippyCoder",
+  "version": "1.0.0",
+  "appVersion": "2.4.0",
+  "description": "Greyscale dark theme in the style of Android dark mode.",
+  "builtin": false
+}

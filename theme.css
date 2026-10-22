@@ -1,0 +1,190 @@
+/* ═══════════════════════════════════════════════════════
+   Monotone - MCPanel Theme
+   Author: DippyCoder
+   Greyscale dark theme modelled on Android / Material 3
+   dark: depth comes from tonal surface steps, not outlines.
+   Red stays for errors and destructive actions only.
+   ═══════════════════════════════════════════════════════ */
+
+:root {
+  color-scheme: dark;
+  --app-icon: white;
+
+  /* Material 3 neutral surface steps */
+  --bg-base:      #131313;   /* surface */
+  --bg-surface:   #1b1b1b;   /* surface-container-low */
+  --bg-elevated:  #262626;   /* surface-container-high */
+  --bg-card:      #1f1f1f;   /* surface-container */
+  --bg-hover:     #2e2e2e;
+
+  /* The base stylesheet still reads these in a few places. */
+  --purple-900:   #1b1b1b;
+  --purple-800:   #262626;
+  --purple-700:   #3a3a3a;
+  --purple-600:   #c8c8c8;
+  --purple-500:   #a0a0a0;
+  --purple-400:   #c8c8c8;
+  --purple-300:   #e2e2e2;
+  --purple-200:   #c8c8c8;
+  --purple-100:   #ededed;
+
+  --accent:       #d4d4d4;   /* primary */
+  --accent-rgb:   212,212,212;
+  --accent-glow:  rgba(212,212,212,0.12);
+  --accent-dim:   rgba(212,212,212,0.08);
+  --console-bg:        #0e0e0e;
+  --console-input-bg:  #131313;
+
+  --green:        #d4d4d4;
+  --green-rgb:    212,212,212;
+  --green-dim:    rgba(212,212,212,0.1);
+  --orange:       #9a9a9a;
+  --orange-rgb:   154,154,154;
+  --yellow:       #9a9a9a;
+  --yellow-rgb:   154,154,154;
+
+  --text-primary:   #e5e2e1;   /* on-surface */
+  --text-secondary: #c4c4c4;   /* on-surface-variant */
+  --text-muted:     #8e8e8e;   /* outline */
+  --text-accent:    #ededed;
+
+  --border:       rgba(255,255,255,0.05);   /* outline-variant, barely there */
+  --border-focus: #d4d4d4;
+
+  --shadow-sm:  none;
+  --shadow:     none;
+  --shadow-lg:  0 8px 28px rgba(0,0,0,0.45);
+  --shadow-purple: none;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.24); }
+
+/* App bars blend into the page, like Android */
+.titlebar, .sidebar { background: var(--bg-base); }
+.titlebar-logo { color: var(--text-primary); }
+
+/* Plain headline instead of the gradient */
+.page-header h1 {
+  background: var(--text-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Navigation: filled pill indicator, no side bar */
+.nav-item.active {
+  background: #333333;
+  color: var(--text-primary);
+  box-shadow: none;
+}
+.nav-item:hover { background: var(--bg-surface); }
+.sidebar-server-item.active { color: var(--text-primary); }
+
+/* Containers: tonal fill, no outline, no lift */
+.card, .server-card, .profile-card, .stat-circle-card {
+  background: var(--bg-card);
+  border-color: transparent;
+  backdrop-filter: none;
+}
+.server-card::before, .profile-card::after { display: none; }
+.server-card:hover, .profile-card:hover, .stat-circle-card:hover {
+  background: #232323;
+  border-color: transparent;
+  box-shadow: none;
+  transform: none;
+}
+.stat-chip, .jdk-item, .about-item, .player-item { background: var(--bg-elevated); border-color: transparent; }
+.stat-circle-track { stroke: #2e2e2e; }
+.server-card-footer { border-top-color: rgba(255,255,255,0.06); }
+
+/* Buttons
+   primary  = filled light tone, dark label
+   ghost/sm = outlined in the "outline" grey */
+.btn-primary {
+  background: var(--accent);
+  color: #1b1b1b;
+  box-shadow: none;
+}
+.btn-primary:hover { background: #e8e8e8; box-shadow: none; transform: none; }
+.btn-ghost, .btn-ghost-sm { border-color: #444444; color: var(--text-primary); }
+.btn-ghost:hover, .btn-ghost-sm:hover { border-color: #444444; background: rgba(255,255,255,0.06); }
+.btn-sm, .btn-xs { background: var(--bg-elevated); border-color: transparent; color: var(--text-primary); }
+.btn-sm:hover, .btn-xs:hover { border-color: transparent; background: #333333; }
+.btn-send:hover { color: #1b1b1b; }
+.btn-control.wl:hover { color: #1b1b1b; }
+
+.quick-ctrl-btn, .btn-control { background: var(--bg-elevated); border-color: transparent; }
+.quick-ctrl-btn:hover { border-color: transparent; color: var(--text-primary); background: #333333; }
+.srv-quick-btn:hover { background: rgba(255,255,255,0.06); color: var(--text-primary); }
+
+/* Inputs: filled, outline only on focus */
+.input, .input-sm, .checkbox-item { background: var(--bg-elevated); border-color: transparent; }
+.input:focus, .input-sm:focus { border-color: var(--border-focus); }
+.input::placeholder { color: var(--text-muted); }
+.checkbox-item:hover { border-color: transparent; background: #2e2e2e; }
+
+/* Toggle + checkbox: dark knob / tick on the light fill */
+.toggle-slider { background: #3a3a3a; }
+.toggle-switch input:checked + .toggle-slider:before { background: #1b1b1b; }
+input[type="checkbox"]:checked::after {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231b1b1b' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='4 12 10 18 20 6'/%3E%3C/svg%3E");
+}
+.checkbox-item input[type=checkbox] { accent-color: var(--accent); }
+
+/* Status badges: quiet tonal chips */
+.status-badge.offline { background: #262626; border-color: transparent; }
+
+/* Console */
+.console-prompt { color: var(--accent); }
+
+/* Dialogs: highest surface, rounded like Android dialogs */
+.modal {
+  background: #2a2a2a;
+  border-color: transparent;
+  border-radius: 24px;
+  box-shadow: var(--shadow-lg);
+}
+.modal-footer { background: transparent; }
+
+.field-hint, .jdk-version, .progress-percent, .active-theme-name { color: var(--text-primary); }
+
+/* ── Semantic token overrides ───────────────────────── */
+:root {
+  --online-color:   #ededed;
+  --online-glow:    rgba(237,237,237,0.3);
+  --offline-color:  var(--text-muted);
+  --starting-color: #a0a0a0;
+  --starting-rgb:   160,160,160;
+
+  --log-text:       #d0d0d0;
+  --log-error:      #f2b8b5;
+  --log-warn:       #ededed;
+  --log-system:     #8e8e8e;
+
+  --info-box-bg:       #1f1f1f;
+  --info-box-border:   transparent;
+  --info-box-text:     #c4c4c4;
+
+  --warning-box-bg:     #262626;
+  --warning-box-border: transparent;
+  --warning-box-text:   #ededed;
+
+  --danger-zone-bg:          rgba(242,184,181,0.06);
+  --danger-zone-border:      rgba(242,184,181,0.18);
+  --danger-zone-title-color: #f2b8b5;
+
+  /* Snackbars: inverse surface, like Android */
+  --toast-success-bg:     #e5e2e1;
+  --toast-success-border: transparent;
+  --toast-success-text:   #1b1b1b;
+  --toast-error-bg:       #8c1d18;
+  --toast-error-border:   transparent;
+  --toast-error-text:     #f9dedc;
+  --toast-info-bg:        #e5e2e1;
+  --toast-info-border:    transparent;
+  --toast-info-text:      #1b1b1b;
+
+  --bar-green-bg:  rgba(212,212,212,0.5);
+  --bar-red-bg:    rgba(242,184,181,0.5);
+}
